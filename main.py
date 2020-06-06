@@ -237,8 +237,8 @@ def main():
     edit_net.cuda()
 
     if args.load_model is not None:
-        print("load edit_net for further training")
-        ckpt_path = args.load_model
+        ckpt_path = Checkpoint.get_latest_checkpoint(args.load_model)
+        print("load edit_net for further training from %s", ckpt_path)
         ckpt = Checkpoint.load(ckpt_path)
         edit_net = ckpt.model
         edit_net.cuda()
